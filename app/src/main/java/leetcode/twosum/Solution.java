@@ -13,6 +13,8 @@ public class Solution {
             }
             indexByValue.put(nums[i], i);
         }
-        return null;
+
+        // Should not come here
+        throw new RuntimeException("pair not found");
     }
 }
