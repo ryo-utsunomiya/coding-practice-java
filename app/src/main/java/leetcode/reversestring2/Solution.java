@@ -1,7 +1,5 @@
 package leetcode.reversestring2;
 
-import java.util.Objects;
-
 // https://leetcode.com/problems/reverse-string-ii/
 public class Solution {
     public String reverseStr(String s, int k) {
