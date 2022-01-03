@@ -1,4 +1,4 @@
-package leetcode.reverseinteger;
+package leetcode.problems.reverseinteger;
 
 // https://leetcode.com/problems/reverse-integer/
 class Solution {

@@ -1,4 +1,4 @@
-package leetcode.removeelement;
+package leetcode.problems.removeelement;
 
 import java.util.Arrays;
 

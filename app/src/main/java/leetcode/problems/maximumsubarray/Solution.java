@@ -1,4 +1,4 @@
-package leetcode.maximumsubarray;
+package leetcode.problems.maximumsubarray;
 
 // https://leetcode.com/problems/maximum-subarray/
 public class Solution {

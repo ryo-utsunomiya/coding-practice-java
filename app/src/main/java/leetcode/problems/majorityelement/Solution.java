@@ -1,4 +1,4 @@
-package leetcode.majorityelement;
+package leetcode.problems.majorityelement;
 
 import java.util.Arrays;
 

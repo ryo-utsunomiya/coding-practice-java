@@ -1,4 +1,4 @@
-package leetcode.reversestring2;
+package leetcode.problems.reversestring2;
 
 // https://leetcode.com/problems/reverse-string-ii/
 public class Solution {

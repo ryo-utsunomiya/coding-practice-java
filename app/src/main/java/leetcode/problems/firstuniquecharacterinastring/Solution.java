@@ -1,4 +1,4 @@
-package leetcode.firstuniquecharacterinastring;
+package leetcode.problems.firstuniquecharacterinastring;
 
 import java.util.HashMap;
 

@@ -1,4 +1,4 @@
-package leetcode.movezeros;
+package leetcode.problems.movezeros;
 
 import java.util.Arrays;
 
