@@ -6,7 +6,7 @@ import java.util.List;
 // https://leetcode.com/problems/binary-tree-preorder-traversal/
 public class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        if (root == null || root.val == 0) {
+        if (root == null) {
             return List.of();
         }
         var visited = new ArrayList<Integer>();
@@ -44,7 +44,7 @@ public class Solution {
                 )
         ));
         // []
-        System.out.println(s.preorderTraversal(new TreeNode()));
+        System.out.println(s.preorderTraversal(null));
         // [1]
         System.out.println(s.preorderTraversal(new TreeNode(1)));
     }
