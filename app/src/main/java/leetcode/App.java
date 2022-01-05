@@ -1,6 +1,6 @@
 package leetcode;
 
-import leetcode.problems.twosum.Solution;
+import leetcode.twosum.Solution;
 
 import java.util.Arrays;
 
