@@ -1,36 +1,28 @@
 package leetcode.binarytreepreordertraversal;
 
+import leetcode.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // https://leetcode.com/problems/binary-tree-preorder-traversal/
 public class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
-        if (root == null) {
-            return List.of();
-        }
         var visited = new ArrayList<Integer>();
-        visited.add(root.val);
-        if (root.left != null) {
-            preorderTraversal(root.left, visited);
-        }
-        if (root.right != null) {
-            preorderTraversal(root.right, visited);
-        }
-
+        preorderTraversal(root, visited);
         return visited;
     }
 
-    public void preorderTraversal(TreeNode root, List<Integer> visited) {
-        if (root == null || root.val == 0) {
+    void preorderTraversal(TreeNode node, List<Integer> visited) {
+        if (node == null) {
             return;
         }
-        visited.add(root.val);
-        if (root.left != null) {
-            preorderTraversal(root.left, visited);
+        visited.add(node.val);
+        if (node.left != null) {
+            preorderTraversal(node.left, visited);
         }
-        if (root.right != null) {
-            preorderTraversal(root.right, visited);
+        if (node.right != null) {
+            preorderTraversal(node.right, visited);
         }
     }
 

@@ -1,34 +1,29 @@
 package leetcode.binarytreeinordertraversal;
 
+import leetcode.TreeNode;
+
 import java.util.ArrayList;
 import java.util.List;
 
 // https://leetcode.com/problems/binary-tree-inorder-traversal/
 public class Solution {
     public List<Integer> inorderTraversal(TreeNode root) {
-        if (root == null) {
-            return List.of();
-        }
-
         var visited = new ArrayList<Integer>();
-        if (root.left != null) {
-            inorderTraversal(root.left, visited);
-        }
-        visited.add(root.val);
-        if (root.right != null) {
-            inorderTraversal(root.right, visited);
-        }
-
+        inorderTraversal(root, visited);
         return visited;
     }
 
-    void inorderTraversal(TreeNode root, List<Integer> visited) {
-        if (root.left != null) {
-            inorderTraversal(root.left, visited);
+    void inorderTraversal(TreeNode node, List<Integer> visited) {
+        if (node == null) {
+            return;
         }
-        visited.add(root.val);
-        if (root.right != null) {
-            inorderTraversal(root.right, visited);
+
+        if (node.left != null) {
+            inorderTraversal(node.left, visited);
+        }
+        visited.add(node.val);
+        if (node.right != null) {
+            inorderTraversal(node.right, visited);
         }
     }
 
