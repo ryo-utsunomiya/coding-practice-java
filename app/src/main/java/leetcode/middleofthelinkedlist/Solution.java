@@ -3,9 +3,9 @@ package leetcode.middleofthelinkedlist;
 // https://leetcode.com/problems/middle-of-the-linked-list/
 public class Solution {
     public ListNode middleNode(ListNode head) {
-        ListNode slow = head.next;
-        ListNode fast = head.next;
-        while (fast.next != null && fast.next.next != null) {
+        ListNode slow = head;
+        ListNode fast = head;
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
         }
