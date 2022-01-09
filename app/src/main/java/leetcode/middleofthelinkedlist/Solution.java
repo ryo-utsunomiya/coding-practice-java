@@ -1,5 +1,7 @@
 package leetcode.middleofthelinkedlist;
 
+import leetcode.ListNode;
+
 // https://leetcode.com/problems/middle-of-the-linked-list/
 public class Solution {
     public ListNode middleNode(ListNode head) {
