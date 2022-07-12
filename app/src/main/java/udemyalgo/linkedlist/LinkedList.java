@@ -49,6 +49,34 @@ public class LinkedList<E> {
         }
     }
 
+    public void reverse() {
+        var currentNode = this.head;
+        Node<E> previousNode = null;
+        while (currentNode != null) {
+            var nextNode = currentNode.next;
+            currentNode.next = previousNode;
+            previousNode = currentNode;
+            currentNode = nextNode;
+        }
+        this.head = previousNode;
+    }
+
+    public void reverseRecursive() {
+        this.head = reverseRecursive(this.head, null);
+    }
+
+    public Node<E> reverseRecursive(Node<E> currentNode, Node<E> previousNode) {
+        if (currentNode == null) {
+            return previousNode;
+        }
+
+        var nextNode = currentNode.next;
+        currentNode.next = previousNode;
+        previousNode = currentNode;
+        currentNode = nextNode;
+        return reverseRecursive(currentNode, previousNode);
+    }
+
     @Override
     public String toString() {
         var sb = new StringBuilder("[");
@@ -94,6 +122,10 @@ public class LinkedList<E> {
         l.append(2);
         l.insert(3);
         l.remove(1);
+        System.out.println(l);
+        l.reverse();
+        System.out.println(l);
+        l.reverseRecursive();
         System.out.println(l);
     }
 }
