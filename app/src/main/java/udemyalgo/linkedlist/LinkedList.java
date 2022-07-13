@@ -62,10 +62,10 @@ public class LinkedList<E> {
     }
 
     public void reverseRecursive() {
-        this.head = reverseRecursive(this.head, null);
+        this.head = innerReverseRecursive(this.head, null);
     }
 
-    public Node<E> reverseRecursive(Node<E> currentNode, Node<E> previousNode) {
+    private Node<E> innerReverseRecursive(Node<E> currentNode, Node<E> previousNode) {
         if (currentNode == null) {
             return previousNode;
         }
@@ -74,7 +74,7 @@ public class LinkedList<E> {
         currentNode.next = previousNode;
         previousNode = currentNode;
         currentNode = nextNode;
-        return reverseRecursive(currentNode, previousNode);
+        return innerReverseRecursive(currentNode, previousNode);
     }
 
     @Override
@@ -116,16 +116,54 @@ public class LinkedList<E> {
         }
     }
 
+    // [1,4,6,8,9] => [1,8,6,4,9]
+    public static LinkedList<Integer> reverseEven(LinkedList<Integer> list) {
+        list.head = innerReverseEven(list.head, null);
+        return list;
+    }
+
+    private static Node<Integer> innerReverseEven(Node<Integer> head, Node<Integer> previousNode) {
+        if (head == null) {
+            return null;
+        }
+
+        var currentNode = head;
+        while (currentNode != null && currentNode.data % 2 == 0) {
+            var nextNode = currentNode.next;
+            currentNode.next = previousNode;
+            previousNode = currentNode;
+            currentNode = nextNode;
+        }
+
+        if (currentNode != head) {
+            head.next = currentNode;
+            innerReverseEven(currentNode, previousNode);
+            return previousNode;
+        } else {
+            head.next = innerReverseEven(head.next, head);
+            return head;
+        }
+    }
+
     public static void main(String[] args) {
+//        var l = new LinkedList<Integer>();
+//        l.append(1);
+//        l.append(2);
+//        l.insert(3);
+//        l.remove(1);
+//        System.out.println(l);
+//        l.reverse();
+//        System.out.println(l);
+//        l.reverseRecursive();
+//        System.out.println(l);
+
         var l = new LinkedList<Integer>();
         l.append(1);
-        l.append(2);
-        l.insert(3);
-        l.remove(1);
+        l.append(4);
+        l.append(6);
+        l.append(8);
+        l.append(9);
         System.out.println(l);
-        l.reverse();
-        System.out.println(l);
-        l.reverseRecursive();
-        System.out.println(l);
+        System.out.println(reverseEven(l));
     }
 }
