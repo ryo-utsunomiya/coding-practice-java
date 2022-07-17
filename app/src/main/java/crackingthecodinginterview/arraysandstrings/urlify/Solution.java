@@ -1,4 +1,4 @@
-package crackingthecodinginterview.urlify;
+package crackingthecodinginterview.arraysandstrings.urlify;
 
 public class Solution {
     public String urlify(String str, int length) {

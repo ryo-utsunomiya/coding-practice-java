@@ -1,4 +1,4 @@
-package crackingthecodinginterview.isunique;
+package crackingthecodinginterview.arraysandstrings.isunique;
 
 import java.util.HashSet;
 

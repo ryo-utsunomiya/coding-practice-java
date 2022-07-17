@@ -1,4 +1,4 @@
-package crackingthecodinginterview.stringcompression;
+package crackingthecodinginterview.arraysandstrings.stringcompression;
 
 // 1.6 String Compression
 // Implement a method to perform basic string compression using the counts of repeated characters.

@@ -1,4 +1,4 @@
-package crackingthecodinginterview.zeromatrix;
+package crackingthecodinginterview.arraysandstrings.zeromatrix;
 
 import java.util.Arrays;
 

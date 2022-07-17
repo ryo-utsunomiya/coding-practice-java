@@ -1,4 +1,4 @@
-package crackingthecodinginterview.checkpermuration;
+package crackingthecodinginterview.arraysandstrings.checkpermuration;
 
 import java.util.HashMap;
 import java.util.Map;

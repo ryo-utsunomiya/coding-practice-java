@@ -1,4 +1,4 @@
-package crackingthecodinginterview.rotatematrix;
+package crackingthecodinginterview.arraysandstrings.rotatematrix;
 
 import java.util.Arrays;
 
