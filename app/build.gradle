@@ -23,7 +23,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'leetcodejava.App'
+    mainClass = 'codingpracticejava.App'
 }
 
 tasks.named('test') {
