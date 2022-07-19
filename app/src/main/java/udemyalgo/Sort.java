@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Sort {
-    public List<Integer> quickSort(List<Integer> numbers) {
+    public List<Integer> quickSort(final List<Integer> numbers) {
         return quickSort(new ArrayList<>(numbers), 0, numbers.size() - 1);
     }
 
-    private List<Integer> quickSort(List<Integer> numbers, int left, int right) {
+    private List<Integer> quickSort(final List<Integer> numbers, int left, int right) {
         if (left < right) {
             int partitionIndex = partition(numbers, left, right);
             quickSort(numbers, left, partitionIndex - 1);
@@ -17,7 +17,7 @@ public class Sort {
         return numbers;
     }
 
-    private int partition(List<Integer> numbers, int left, int right) {
+    private int partition(final List<Integer> numbers, int left, int right) {
         int pivot = numbers.get(right);
         int i = left - 1;
 
@@ -33,22 +33,22 @@ public class Sort {
         return partitionIndex;
     }
 
-    void swap(List<Integer> numbers, int i, int j) {
+    void swap(final List<Integer> numbers, int i, int j) {
         int tmp = numbers.get(i);
         numbers.set(i, numbers.get(j));
         numbers.set(j, tmp);
     }
 
-    public List<Integer> mergeSort(List<Integer> numbers) {
+    public List<Integer> mergeSort(final List<Integer> numbers) {
         if (numbers.size() <= 1) {
             return numbers;
         }
 
-        numbers = new ArrayList<>(numbers); // Convert to modifiable List
-        int center = numbers.size() / 2;
+        var sortedNumbers = new ArrayList<>(numbers); // Convert to modifiable List
+        int center = sortedNumbers.size() / 2;
         // Create new ArrayList because subList returns only a view, not a new list
-        List<Integer> left = new ArrayList<>(numbers.subList(0, center));
-        List<Integer> right = new ArrayList<>(numbers.subList(center, numbers.size()));
+        List<Integer> left = new ArrayList<>(sortedNumbers.subList(0, center));
+        List<Integer> right = new ArrayList<>(sortedNumbers.subList(center, sortedNumbers.size()));
 
         left = mergeSort(left);
         right = mergeSort(right);
@@ -56,33 +56,48 @@ public class Sort {
         int i = 0, j = 0, k = 0;
         while (i < left.size() && j < right.size()) {
             if (left.get(i) < right.get(j)) {
-                numbers.set(k, left.get(i));
+                sortedNumbers.set(k, left.get(i));
                 i++;
             } else {
-                numbers.set(k, right.get(j));
+                sortedNumbers.set(k, right.get(j));
                 j++;
             }
             k++;
         }
 
         while (i < left.size()) {
-            numbers.set(k, left.get(i));
+            sortedNumbers.set(k, left.get(i));
             i++;
             k++;
         }
 
         while (j < right.size()) {
-            numbers.set(k, right.get(j));
+            sortedNumbers.set(k, right.get(j));
             j++;
             k++;
         }
 
-        return numbers;
+        return sortedNumbers;
     }
+
+    public List<Integer> bubbleSort(final List<Integer> numbers) {
+        var sortedNumbers = new ArrayList<>(numbers); // Make a mutable list
+        for (int i = 0; i < sortedNumbers.size(); i++) {
+            for (int j = 0; j < sortedNumbers.size() - 1 - i; j++) {
+                if (sortedNumbers.get(j) > sortedNumbers.get(j + 1)) {
+                    swap(sortedNumbers, j, j+1);
+                }
+            }
+        }
+        return sortedNumbers;
+    }
+
+    // todo: Selection Sort
 
     public static void main(String[] args) {
         var s = new Sort();
         System.out.println(s.quickSort(List.of(1, 8, 3, 9, 4, 5, 7)));
         System.out.println(s.mergeSort(List.of(1, 8, 3, 9, 4, 5, 7)));
+        System.out.println(s.bubbleSort(List.of(1, 8, 3, 9, 4, 5, 7)));
     }
 }

@@ -1,7 +1,5 @@
 package udemyalgo.linkedlist;
 
-import javax.imageio.plugins.jpeg.JPEGImageReadParam;
-
 public class DoublyLinkedList {
     private Node head;
 
@@ -73,6 +71,28 @@ public class DoublyLinkedList {
         }
     }
 
+    public void sort() {
+        if (this.head == null) {
+            return;
+        }
+
+        var currentNode = this.head;
+        while (currentNode != null) {
+
+            var n = currentNode;
+            while (n != null) {
+                if (currentNode.data > n.data) {
+                    int tmpData = currentNode.data;
+                    currentNode.data = n.data;
+                    n.data = tmpData;
+                }
+                n = n.next;
+            }
+
+            currentNode = currentNode.next;
+        }
+    }
+
     @Override
     public String toString() {
         var sb = new StringBuilder("[");
@@ -94,7 +114,7 @@ public class DoublyLinkedList {
     }
 
     static class Node {
-        private final int data;
+        private int data;
         private Node next;
         private Node prev;
 
@@ -108,10 +128,10 @@ public class DoublyLinkedList {
     public static void main(String[] args) {
         var d = new DoublyLinkedList();
         d.append(1);
+        d.append(5);
         d.append(2);
-        d.append(3);
-        d.insert(0);
-        d.remove(2);
+        d.append(9);
+        d.sort();
         System.out.println(d);
     }
 }
