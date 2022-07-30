@@ -2,7 +2,7 @@ package crackingthecodinginterview.linkedlist;
 
 public class Node {
     public Node next = null;
-    public final int data;
+    public int data;
 
     public Node(int d) {
         data = d;
