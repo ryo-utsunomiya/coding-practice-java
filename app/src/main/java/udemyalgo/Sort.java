@@ -92,6 +92,22 @@ public class Sort {
         return sortedNumbers;
     }
 
+    public List<Integer> insertionSort(List<Integer> numbers) {
+        numbers = new ArrayList<>(numbers);
+        for (int i = 1; i < numbers.size(); i++) {
+            int tmp = numbers.get(i);
+            int j = i - 1;
+            while (j >= 0 && numbers.get(j) > tmp) {
+                // shift
+                numbers.set(j + 1, numbers.get(j));
+                j--;
+            }
+            // insert
+            numbers.set(j + 1, tmp);
+        }
+        return numbers;
+    }
+
     // todo: Selection Sort
 
     public static void main(String[] args) {
@@ -99,5 +115,6 @@ public class Sort {
         System.out.println(s.quickSort(List.of(1, 8, 3, 9, 4, 5, 7)));
         System.out.println(s.mergeSort(List.of(1, 8, 3, 9, 4, 5, 7)));
         System.out.println(s.bubbleSort(List.of(1, 8, 3, 9, 4, 5, 7)));
+        System.out.println(s.insertionSort(List.of(1, 8, 3, 9, 4, 5, 7)));
     }
 }
