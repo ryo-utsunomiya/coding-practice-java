@@ -1,7 +1,7 @@
 package leetcode.wallsandgates;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.Queue;
 
 public class Solution {
@@ -20,7 +20,7 @@ public class Solution {
             return;
         }
         int m = rooms[0].length;
-        Queue<int[]> pointsToVisit = new LinkedList<>();
+        Queue<int[]> pointsToVisit = new ArrayDeque<>();
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (rooms[i][j] == GATE) {
