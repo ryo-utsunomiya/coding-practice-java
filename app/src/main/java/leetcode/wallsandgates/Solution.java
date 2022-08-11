@@ -6,13 +6,8 @@ import java.util.Queue;
 
 public class Solution {
     private static final int GATE = 0;
-    private static final int INF = 2147483647;
-    private static final int[][] DIRECTIONS = new int[][] {
-            new int[]{1,0}, // south
-            new int[]{0,1}, // east
-            new int[]{-1,0}, // north
-            new int[]{0,-1}, // west
-    };
+    private static final int EMPTY = 2147483647;
+    private static final int[][] DIRECTIONS = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
     public void wallsAndGates(int[][] rooms) {
         int n = rooms.length;
@@ -24,7 +19,7 @@ public class Solution {
         for (int i = 0; i < n; i++) {
             for (int j = 0; j < m; j++) {
                 if (rooms[i][j] == GATE) {
-                    pointsToVisit.offer(new int[]{i,j});
+                    pointsToVisit.offer(new int[]{i, j});
                 }
             }
         }
@@ -35,7 +30,7 @@ public class Solution {
             for (int[] direction : DIRECTIONS) {
                 int r = row + direction[0];
                 int c = col + direction[1];
-                if (r < 0 || c < 0 || r >= n || c >= m || rooms[r][c] != INF) {
+                if (r < 0 || c < 0 || r >= n || c >= m || rooms[r][c] != EMPTY) {
                     continue;
                 }
                 // the distance is original point + 1
@@ -49,10 +44,10 @@ public class Solution {
         var s = new Solution();
         {
             var rooms = new int[][]{
-                    new int[]{2147483647,-1,0,2147483647},
-                    new int[]{2147483647,2147483647,2147483647,-1},
-                    new int[]{2147483647,-1,2147483647,-1},
-                    new int[]{0,-1,2147483647,2147483647},
+                    new int[]{2147483647, -1, 0, 2147483647},
+                    new int[]{2147483647, 2147483647, 2147483647, -1},
+                    new int[]{2147483647, -1, 2147483647, -1},
+                    new int[]{0, -1, 2147483647, 2147483647},
             };
             s.wallsAndGates(rooms);
             System.out.println(Arrays.deepToString(rooms));
