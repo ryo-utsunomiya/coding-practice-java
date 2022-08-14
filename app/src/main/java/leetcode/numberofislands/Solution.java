@@ -1,6 +1,8 @@
 package leetcode.numberofislands;
 
 public class Solution {
+    int[][] DIRECTIONS = new int[][]{ {1,0}, {-1,0}, {0,1}, {0,-1} };
+
     public int numIslands(char[][] grid) {
         if (grid == null || grid.length == 0) {
             return 0;
@@ -12,7 +14,8 @@ public class Solution {
         int answer = 0;
         for (int row = 0; row < nr; row++) {
             for (int col = 0; col < nc; col++) {
-                if (dfs(grid, row, col)) {
+                if (grid[row][col] == '1') {
+                    dfs(grid, row, col);
                     answer++;
                 }
             }
@@ -20,21 +23,19 @@ public class Solution {
         return answer;
     }
 
-    boolean dfs(char[][] grid, int row, int col) {
-        int nr = grid.length;
-        int nc = grid[0].length;
-        if (row < 0 || col < 0 || row >= nr || col >= nc || grid[row][col] == '0') {
-            return false;
-        }
-
+    void dfs(char[][] grid, int row, int col) {
         grid[row][col] = '0';
 
-        dfs(grid, row + 1, col);
-        dfs(grid, row - 1, col);
-        dfs(grid, row, col + 1);
-        dfs(grid, row, col - 1);
+        int nr = grid.length;
+        int nc = grid[0].length;
 
-        return true;
+        for (int[] d : DIRECTIONS) {
+            int r = row + d[0];
+            int c = col + d[1];
+            if (r >= 0 && c >= 0 && r < nr && c < nc && grid[r][c] == '1') {
+                dfs(grid, r, c);
+            }
+        }
     }
 
     public static void main(String[] args) {
