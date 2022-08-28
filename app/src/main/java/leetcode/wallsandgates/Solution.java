@@ -10,32 +10,30 @@ public class Solution {
     private static final int[][] DIRECTIONS = {{1, 0}, {0, 1}, {-1, 0}, {0, -1}};
 
     public void wallsAndGates(int[][] rooms) {
-        int n = rooms.length;
-        if (n == 0) {
-            return;
-        }
-        int m = rooms[0].length;
+        int m = rooms.length;
+        int n = rooms[0].length;
+
         Queue<int[]> pointsToVisit = new ArrayDeque<>();
-        for (int i = 0; i < n; i++) {
-            for (int j = 0; j < m; j++) {
-                if (rooms[i][j] == GATE) {
-                    pointsToVisit.offer(new int[]{i, j});
+        for (int r = 0; r < m; r++) {
+            for (int c = 0; c < n; c++) {
+                if (rooms[r][c] == GATE) {
+                    pointsToVisit.offer(new int[]{r, c});
                 }
             }
         }
+
         while (!pointsToVisit.isEmpty()) {
             int[] point = pointsToVisit.poll();
             int row = point[0];
             int col = point[1];
-            for (int[] direction : DIRECTIONS) {
-                int r = row + direction[0];
-                int c = col + direction[1];
-                if (r < 0 || c < 0 || r >= n || c >= m || rooms[r][c] != EMPTY) {
-                    continue;
+
+            for (int[] d : DIRECTIONS) {
+                int r = row + d[0];
+                int c = col + d[1];
+                if (r >= 0 && c >= 0 && r < m && c < n && rooms[r][c] == EMPTY) {
+                    rooms[r][c] = rooms[row][col] + 1;
+                    pointsToVisit.offer(new int[]{r, c});
                 }
-                // the distance is original point + 1
-                rooms[r][c] = rooms[row][col] + 1;
-                pointsToVisit.offer(new int[]{r, c});
             }
         }
     }
