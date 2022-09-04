@@ -8,21 +8,22 @@ public class Solution {
         return numTrees(1, n);
     }
 
-    public int numTrees(int left, int right) {
-        if (left >= right) {
+    public int numTrees(int start, int end) {
+        if (start >= end) {
             return 1;
         }
-        if (memo[right - left] != 0) {
-            return memo[right - left];
+        int diff = end - start;
+        if (memo[diff] != 0) {
+            return memo[diff];
         }
 
         int numTrees = 0;
-        for (int root = left; root <= right; root++) {
-            int numLeftTrees = numTrees(left, root - 1);
-            int numRightTrees = numTrees(root + 1, right);
+        for (int root = start; root <= end; root++) {
+            int numLeftTrees = numTrees(start, root - 1);
+            int numRightTrees = numTrees(root + 1, end);
             numTrees += numLeftTrees * numRightTrees;
         }
-        memo[right - left] = numTrees;
+        memo[diff] = numTrees;
         return numTrees;
     }
 
