@@ -1,10 +1,9 @@
 package leetcode.uniquebinarysearchtrees;
 
 public class Solution {
-    int[] memo;
+    int[] memo = new int[19]; // Constraints: 1 <= n <= 19
 
     public int numTrees(int n) {
-        memo = new int[n+1];
         return numTrees(1, n);
     }
 
