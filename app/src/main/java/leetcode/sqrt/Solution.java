@@ -11,7 +11,7 @@ public class Solution {
         int pivot;
         long pivotSquare;
         while (left <= right) {
-            pivot = left + (right - left) / 2;
+            pivot = (left + right) / 2;
             pivotSquare = (long)pivot * pivot;
             if (pivotSquare > x) {
                 right = pivot - 1;
