@@ -5,30 +5,26 @@ import java.util.Map;
 
 public class Solution {
     public int findTargetSumWays(int[] nums, int target) {
-        return calculateNumWays(nums, 0, 0, target, new HashMap<>());
+        return calculateNumWays(nums, target, 0, 0, new HashMap<>());
     }
 
-    private int calculateNumWays(
-            int[] nums,
-            int index,
-            int sum,
-            int target,
-            Map<Integer, Map<Integer, Integer>> memo
-    ) {
+    private int calculateNumWays(int[] nums, int target, int index, int sum,
+                                 Map<Integer, Map<Integer, Integer>> memo) {
         if (index == nums.length) {
-            return (sum == target) ? 1 : 0;
+            return sum == target ? 1 : 0;
         } else if (memo.containsKey(index) && memo.get(index).containsKey(sum)) {
             return memo.get(index).get(sum);
         }
 
-        int numWaysWhenAdd = calculateNumWays(nums, index + 1, sum + nums[index], target, memo);
-        int numWaysWhenSub = calculateNumWays(nums, index + 1, sum - nums[index], target, memo);
-        int numWaysTotal = numWaysWhenAdd + numWaysWhenSub;
+        int numWaysAdd = calculateNumWays(nums, target, index + 1, sum + nums[index], memo);
+        int numWaysSub = calculateNumWays(nums, target, index + 1, sum - nums[index], memo);
+        int numWaysTotal = numWaysAdd + numWaysSub;
 
         if (!memo.containsKey(index)) {
             memo.put(index, new HashMap<>());
         }
         memo.get(index).put(sum, numWaysTotal);
+
         return numWaysTotal;
     }
 
