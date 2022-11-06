@@ -1,11 +1,10 @@
 package leetcode.kthlargestelementinanarray;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class Solution {
     public int findKthLargest(int[] nums, int k) {
-        var heap = new PriorityQueue<Integer>(Comparator.comparingInt(n -> n));
+        var heap = new PriorityQueue<Integer>();
 
         for (int n : nums) {
             heap.add(n);
@@ -14,8 +13,10 @@ public class Solution {
             }
         }
 
-        assert !heap.isEmpty();
-        return heap.poll();
+        if (heap.isEmpty()) {
+            throw new IllegalStateException("heap is empty");
+        }
+        return heap.peek();
     }
 
     public static void main(String[] args) {
