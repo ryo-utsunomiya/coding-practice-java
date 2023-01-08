@@ -6,6 +6,13 @@ package crackingthecodinginterview.arraysandstrings.palindromepermutation;
 // A permutation is a rearrangement of letters.
 // The palindrome does not need to be limited to just dictionary words.
 public class Solution {
+    public static void main(String[] args) {
+        var s = new Solution();
+        System.out.println(s.isPermutationOfPalindrome("Tact Coa")); // true
+        System.out.println(s.isPermutationOfPalindrome("hello")); // false
+        System.out.println(s.isPermutationOfPalindrome("Madam Im Adam")); // true
+    }
+
     public boolean isPermutationOfPalindrome(String phrase) {
         return checkMaxOneOdd(buildCharFrequencyTable(phrase));
     }
@@ -44,12 +51,5 @@ public class Solution {
             }
         }
         return true;
-    }
-
-    public static void main(String[] args) {
-        var s = new Solution();
-        System.out.println(s.isPermutationOfPalindrome("Tact Coa")); // true
-        System.out.println(s.isPermutationOfPalindrome("hello")); // false
-        System.out.println(s.isPermutationOfPalindrome("Madam Im Adam")); // true
     }
 }
