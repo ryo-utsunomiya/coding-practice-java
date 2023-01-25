@@ -12,8 +12,8 @@ public class Main {
 
         int ans = 0;
         for (int i = 1; i <= n; i++) {
-            int sumDigits = sumDigits(i);
-            if (a <= sumDigits && sumDigits <= b) {
+            int sumDigit = sumDigit(i);
+            if (a <= sumDigit && sumDigit <= b) {
                 ans += i;
             }
         }
@@ -22,10 +22,11 @@ public class Main {
         sc.close();
     }
 
-    static int sumDigits(int n) {
+    static int sumDigit(int n) {
         int sum = 0;
-        for (char c : String.valueOf(n).toCharArray()) {
-            sum += c - '0';
+        while (n > 0) {
+            sum += n % 10;
+            n /= 10;
         }
         return sum;
     }
