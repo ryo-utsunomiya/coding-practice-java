@@ -1,4 +1,4 @@
-package atcoder.typical90.nottoobright;
+package atcoder.typical90._033;
 
 import java.util.Scanner;
 
