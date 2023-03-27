@@ -23,7 +23,7 @@ dependencies {
 
 application {
     // Define the main class for the application.
-    mainClass = 'codingpracticejava.App'
+    mainClass = 'App'
 }
 
 tasks.named('test') {
