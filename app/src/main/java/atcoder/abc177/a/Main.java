@@ -10,8 +10,7 @@ public class Main {
         int t = sc.nextInt();
         int s = sc.nextInt();
 
-        double timeElapsed = (double) d / s;
-        System.out.println(timeElapsed <= t ? "Yes" : "No");
+        System.out.println(s * t >= d ? "Yes" : "No");
 
         sc.close();
     }

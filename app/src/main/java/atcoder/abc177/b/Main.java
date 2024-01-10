@@ -10,7 +10,7 @@ public class Main {
         String t = sc.next();
 
         // Sの中でTと異なる文字数が最も少ない部分を探す
-        int minDiff = Integer.MAX_VALUE;
+        int minDiff = t.length();
         for (int i = 0; i < s.length() - t.length(); i++) {
             // 異なる文字数を数える
             int diff = 0;
@@ -19,9 +19,7 @@ public class Main {
                     diff++;
                 }
             }
-            if (diff < minDiff) {
-                minDiff = diff;
-            }
+            minDiff = Math.min(diff, minDiff);
         }
         System.out.println(minDiff);
 
