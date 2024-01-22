@@ -1,4 +1,4 @@
-package atcoder.typical90._055;
+package atcoder.typical90._55;
 
 import java.util.Scanner;
 
