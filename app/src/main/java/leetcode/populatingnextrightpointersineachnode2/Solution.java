@@ -13,8 +13,8 @@ public class Solution {
 
         while (this.leftmost != null) {
             Node curr = this.leftmost;
-            this.leftmost = null;
-            this.prev = null;
+            this.leftmost = null; // 次の階層がある場合は processChild の中でセットする
+            this.prev = null; // processChild の中でセットする
 
             while (curr != null) {
                 processChild(curr.left);
@@ -31,12 +31,12 @@ public class Solution {
             return;
         }
 
-        if (this.prev == null) {
+        if (this.prev == null) { // prev が null の場合は左端
             this.leftmost = child;
-        } else {
+        } else { // prev が null でない場合は、prev.next と現在のノードを繋げる
             this.prev.next = child;
         }
-        this.prev = child;
+        this.prev = child; // 現在のノードをprevにセット
     }
 
     public static void main(String[] args) {
@@ -55,7 +55,7 @@ public class Solution {
         }
     }
 
-    static class Node {
+    public static class Node {
         public int val;
         public Node left;
         public Node right;
