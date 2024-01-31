@@ -8,8 +8,7 @@ public class Solution {
     public String decodeString(String s) {
         var stack = new ArrayDeque<Character>();
 
-        for (int i = 0, len = s.length(); i < len; i++) {
-            char c = s.charAt(i);
+        for (char c : s.toCharArray()) {
             if (c == ']') {
                 // decode string and push to stack
                 List<Character> decodedString = new ArrayList<>();
