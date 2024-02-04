@@ -1,4 +1,4 @@
-package atcoder.abc137a;
+package atcoder.abc137.a;
 
 import java.util.*;
 
