@@ -10,12 +10,20 @@ public class Solution {
     private int[] postorder;
     private int postorderIndex;
 
+    /**
+     * inorder: 木のノードを左の子、親、右の子の順に訪問する順序
+     * postorder: 木のノードを左の子、右の子、親の順に訪問する順序
+     *
+     * postorder の最後の要素が根(root)なので、ここから再帰的に木を構築する
+     * inorder を使うと左右を識別できる
+     */
     public TreeNode buildTree(int[] inorder, int[] postorder) {
+        // inorder から値を探しやすくするため、値 -> インデックス のMapを作る
         for (int i = 0; i < inorder.length; i++) {
             this.inorderIndexMap.put(inorder[i], i);
         }
         this.postorder = postorder;
-        this.postorderIndex = postorder.length - 1;
+        this.postorderIndex = postorder.length - 1; // root から木を構築する
 
         return buildTree(0, inorder.length - 1);
     }
@@ -30,6 +38,7 @@ public class Solution {
         var node = new TreeNode(value);
         int inorderIndex = inorderIndexMap.get(value);
 
+        // ノードの左右の木を再帰的に構築
         node.right = buildTree(inorderIndex + 1, inorderRight);
         node.left = buildTree(inorderLeft, inorderIndex - 1);
 
