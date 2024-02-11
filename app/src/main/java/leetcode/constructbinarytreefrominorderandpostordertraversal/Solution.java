@@ -13,7 +13,7 @@ public class Solution {
     /**
      * inorder: 木のノードを左の子、親、右の子の順に訪問する順序
      * postorder: 木のノードを左の子、右の子、親の順に訪問する順序
-     *
+     * <p>
      * postorder の最後の要素が根(root)なので、ここから再帰的に木を構築する
      * inorder を使うと左右を識別できる
      */
@@ -39,6 +39,7 @@ public class Solution {
         int inorderIndex = inorderIndexMap.get(value);
 
         // ノードの左右の木を再帰的に構築
+        // postorder の後ろから順に木を構築するので、先に右側の木を作る
         node.right = buildTree(inorderIndex + 1, inorderRight);
         node.left = buildTree(inorderLeft, inorderIndex - 1);
 
