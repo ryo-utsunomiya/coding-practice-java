@@ -8,37 +8,36 @@ import java.util.List;
 import java.util.Map;
 
 public class Solution {
-    int curId;
-    Map<String, Integer> serialToId;
-    Map<Integer, Integer> idToCount;
+    Map<String, Integer> serialToCount;
     List<TreeNode> answer;
 
+    /**
+     * 二分木をトラバースしながら各サブツリーの構造をシリアライズし、
+     * そのシリアライズされた文字列を使ってサブツリーが以前に出現したかどうかを判断する
+     * @param root 根
+     * @return 重複した部分木
+     */
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
-        this.curId = 1;
-        this.serialToId = new HashMap<>();
-        this.idToCount = new HashMap<>();
+        this.serialToCount = new HashMap<>();
         this.answer = new LinkedList<>();
-        postorder(root);
+        collect(root);
         return this.answer;
     }
 
-    int postorder(TreeNode root) {
-        if (root == null) {
-            return 0;
+    /**
+     * @param node トラバース対象のノード
+     * @return ノードの木構造をシリアライズした文字列
+     */
+    String collect(TreeNode node) {
+        if (node == null) {
+            return "#";
         }
-        int leftId = postorder(root.left);
-        int rightId = postorder(root.right);
-        String curSerial = leftId + "," + root.val + "," + rightId;
-        int serialId = serialToId.getOrDefault(curSerial, curId);
-        if (serialId == curId) {
-            curId++;
+        String serial = node.val + "," + collect(node.left) + "," + collect(node.right);
+        serialToCount.put(serial, serialToCount.getOrDefault(serial, 0) + 1);
+        if (serialToCount.get(serial) == 2) {
+            this.answer.add(node);
         }
-        serialToId.put(curSerial, serialId);
-        idToCount.put(serialId, idToCount.getOrDefault(serialId, 0) + 1);
-        if (idToCount.get(serialId) == 2) {
-            this.answer.add(root);
-        }
-        return serialId;
+        return serial;
     }
 
     public static void main(String[] args) {
