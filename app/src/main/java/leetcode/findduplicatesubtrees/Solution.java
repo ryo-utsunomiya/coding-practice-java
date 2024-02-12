@@ -20,7 +20,7 @@ public class Solution {
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         this.serialToCount = new HashMap<>();
         this.answer = new LinkedList<>();
-        collect(root);
+        traverse(root);
         return this.answer;
     }
 
@@ -28,11 +28,11 @@ public class Solution {
      * @param node トラバース対象のノード
      * @return ノードの木構造をシリアライズした文字列
      */
-    String collect(TreeNode node) {
+    String traverse(TreeNode node) {
         if (node == null) {
             return "#";
         }
-        String serial = node.val + "," + collect(node.left) + "," + collect(node.right);
+        String serial = String.format("%s,%s,%s", node.val, traverse(node.left), traverse(node.right));
         serialToCount.put(serial, serialToCount.getOrDefault(serial, 0) + 1);
         if (serialToCount.get(serial) == 2) {
             this.answer.add(node);
