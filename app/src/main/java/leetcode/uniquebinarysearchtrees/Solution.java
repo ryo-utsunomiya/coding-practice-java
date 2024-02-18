@@ -1,29 +1,24 @@
 package leetcode.uniquebinarysearchtrees;
 
 public class Solution {
-    int[] memo = new int[19]; // Constraints: 1 <= n <= 19
 
     public int numTrees(int n) {
-        return numTrees(1, n);
-    }
+        // 1からiまでの数字を使って作ることができるBSTの数
+        int[] dp = new int[n + 1];
+        dp[0] = 1;
+        dp[1] = 1;
 
-    public int numTrees(int start, int end) {
-        if (start >= end) {
-            return 1;
-        }
-        int diff = end - start;
-        if (memo[diff] != 0) {
-            return memo[diff];
+        for (int i = 2; i <= n; i++) {
+            // 1からiまでの各jを根とした時のBSTの数を計算る
+            int numTrees = 0;
+            for (int j = 1; j <= i; j++) {
+                // BSTの左側はj-1個のノードから成り、右側はi-j個のノードから成る
+                numTrees += dp[j-1] * dp[i-j];
+            }
+            dp[i] = numTrees;
         }
 
-        int numTrees = 0;
-        for (int root = start; root <= end; root++) {
-            int numLeftTrees = numTrees(start, root - 1);
-            int numRightTrees = numTrees(root + 1, end);
-            numTrees += numLeftTrees * numRightTrees;
-        }
-        memo[diff] = numTrees;
-        return numTrees;
+        return dp[n];
     }
 
     public static void main(String[] args) {
