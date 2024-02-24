@@ -2,46 +2,39 @@ package leetcode.minstack;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.NoSuchElementException;
 
 public class Solution {
     static class MinStack {
-        Deque<ValMinPair> stack = new ArrayDeque<>();
+        Deque<Integer> stack = new ArrayDeque<>();
+        Deque<Integer> minStack = new ArrayDeque<>();
 
-        public void push(int i) {
-            int min;
-            if (stack.isEmpty()) {
-                min = i;
-            } else {
-                min = Math.min(getMin(), i);
+        public void push(int val) {
+            stack.push(val);
+            if (minStack.isEmpty() || val < minStack.peek()) {
+                minStack.push(val);
             }
-            stack.push(new ValMinPair(i, min));
         }
 
         public void pop() {
-            stack.pop();
-        }
-
-        public int getMin() {
-            if (stack.isEmpty()) {
-                throw new IllegalStateException("stack is empty");
+            int val = stack.pop();
+            if (!minStack.isEmpty() && val == minStack.peek()) {
+                minStack.pop();
             }
-            return stack.peek().min;
         }
 
         public int top() {
             if (stack.isEmpty()) {
-                throw new IllegalStateException("stack is empty");
+                throw new NoSuchElementException("stack is empty");
             }
-            return stack.peek().val;
+            return stack.peek();
         }
 
-        static class ValMinPair {
-            int val;
-            int min;
-            public ValMinPair(int val, int min) {
-                this.val = val;
-                this.min = min;
+        public int getMin() {
+            if (minStack.isEmpty()) {
+                throw new NoSuchElementException("minStack is empty");
             }
+            return minStack.peek();
         }
     }
 
