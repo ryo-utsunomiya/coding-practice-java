@@ -2,27 +2,35 @@ package leetcode.sqrt;
 
 public class Solution {
     public int mySqrt(int x) {
-        if (x < 2) {
-            return x;
+        if (x == 0) {
+            return 0;
         }
+        // 二分探索
+        int left = 1; // 1以上の整数の平方根は1以上になる
+        int right = x;
 
-        int left = 2;
-        int right = x / 2;
-        int pivot;
-        long pivotSquare;
-        while (left <= right) {
-            pivot = (left + right) / 2;
-            pivotSquare = (long)pivot * pivot;
-            if (pivotSquare > x) {
-                right = pivot - 1;
-            } else if (pivotSquare < x) {
-                left = pivot + 1;
+        // x = 4 の場合
+        // mid = 1  + (4 - 1)/2 = 2
+        while (true) {
+            // (left + right) / 2 だとオーバーフローすることがあるので
+            // left に (right - left) / 2 を足す
+            int mid = left + (right - left) / 2;
+
+            // mid * mid > x だとオーバーフローすることがあるので
+            // 両辺をmid で割った mid > x / mid で判定する
+            if (mid > x / mid) {
+                // mid * mid が x より大きい場合は、midは大きすぎる
+                right = mid - 1;
             } else {
-                return pivot;
+                // mid * mid <= x かつ
+                // (mid+1) * (mid+1) > x の場合、midが答え
+                if (mid + 1 > x / (mid + 1)) {
+                    return mid;
+                }
+                // mid は小さすぎる
+                left = mid + 1;
             }
         }
-
-        return right;
     }
 
     public static void main(String[] args) {
@@ -34,6 +42,6 @@ public class Solution {
         System.out.println(s.mySqrt(4)); // 2
         System.out.println(s.mySqrt(8)); // 2
         System.out.println(s.mySqrt(9)); // 3
-        System.out.println(s.mySqrt(Integer.MAX_VALUE)); // ???
+        System.out.println(s.mySqrt(Integer.MAX_VALUE)); // 46340
     }
 }
