@@ -9,8 +9,19 @@ public class Solution {
         int left = 1; // 1以上の整数の平方根は1以上になる
         int right = x;
 
-        // x = 4 の場合
-        // mid = 1  + (4 - 1)/2 = 2
+        // x = 4
+        // (1) low = 1, high = 4, mid = 2
+        //     2 * 2 = 4 (== x)
+        //     ans = 2
+
+        // x = 8
+        // (1) low = 1, high = 8, mid = 4
+        //     4 * 4 = 16 (> x)
+        //     high = 4-1 = 3
+        // (2) low = 1, high = 3, mid = 2
+        //     2 * 2 = 4 (< x)
+        //     (2+1) * (2+1) = 9 (> x)
+        //     ans = 2
         while (true) {
             // (left + right) / 2 だとオーバーフローすることがあるので
             // left に (right - left) / 2 を足す
