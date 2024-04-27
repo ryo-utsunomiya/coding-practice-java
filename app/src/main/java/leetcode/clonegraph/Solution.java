@@ -44,7 +44,7 @@ public class Solution {
         }
     }
 
-    static class Node {
+    public static class Node {
         public int val;
         public List<Node> neighbors;
         public Node() {
