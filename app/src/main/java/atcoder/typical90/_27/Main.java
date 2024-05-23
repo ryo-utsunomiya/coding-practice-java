@@ -1,4 +1,4 @@
-package atcoder.typical90._027;
+package atcoder.typical90._27;
 
 import java.util.HashSet;
 import java.util.Scanner;

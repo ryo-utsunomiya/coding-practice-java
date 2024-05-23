@@ -3,29 +3,24 @@ package leetcode.lowestcommonancestorofabinarytree;
 import leetcode.TreeNode;
 
 public class Solution {
-    TreeNode ans;
 
-    public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        this.ans = null;
-        recurseTree(root, p, q);
-        return this.ans;
-    }
-
-    boolean recurseTree(TreeNode node, TreeNode p, TreeNode q) {
-        if (node == null) {
-            return false;
+    public TreeNode lowestCommonAncestor(TreeNode node, TreeNode p, TreeNode q) {
+        // Base case
+        if (node == null || node == p || node == q) {
+            return node;
         }
 
-        int left = recurseTree(node.left, p, q) ? 1 : 0;
-        int right = recurseTree(node.right, p, q) ? 1 : 0;
-        int mid = (node == p || node == q) ? 1 : 0;
+        // Recursively find LCA in the left and right subtrees
+        TreeNode left = lowestCommonAncestor(node.left, p, q);
+        TreeNode right = lowestCommonAncestor(node.right, p, q);
 
-        if (left + right + mid >= 2) {
-            this.ans = node;
-            return true;
+        // If both left and right are non-null, current node is LCA
+        if (left != null && right != null) {
+            return node;
         }
 
-        return (left + right + mid) >= 1;
+        // If either left or right is non-null, return the non-null value
+        return left != null ? left : right;
     }
 
     public static void main(String[] args) {

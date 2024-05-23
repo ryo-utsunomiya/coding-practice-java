@@ -3,6 +3,7 @@ package atcoder.past201912.a;
 import java.util.Scanner;
 import java.util.regex.Pattern;
 
+// https://atcoder.jp/contests/past201912-open
 public class Main {
     static Pattern pattern = Pattern.compile("^[0-9]{3}$");
 

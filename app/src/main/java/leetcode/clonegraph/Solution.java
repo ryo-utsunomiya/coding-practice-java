@@ -15,17 +15,15 @@ public class Solution {
             return null;
         }
 
-        if (origToClone.containsKey(node)) {
-            return origToClone.get(node);
+        var clone = origToClone.get(node);
+        if (clone == null) {
+            clone = new Node(node.val);
+            origToClone.put(node, clone);
+            for (var neighbor : node.neighbors) {
+                clone.neighbors.add(clone(neighbor, origToClone));
+            }
         }
-
-        var clone = new Node(node.val);
-        origToClone.put(node, clone);
-
-        for (var neighbor : node.neighbors) {
-            clone.neighbors.add(clone(neighbor, origToClone));
-        }
-        return node;
+        return clone;
     }
 
     public static void main(String[] args) {
